@@ -77,6 +77,12 @@ class SusTest extends TestCase
 
 
 	}
+	/** @test  */
+	public function sellbag(){
+		/*$date = Carbon::now();
+		$sus = new Sus(2222, "5590616008", "", $date->toDateString());
+		dd($sus->raw());*/
+	}
 
 
 
