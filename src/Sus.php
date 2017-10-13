@@ -129,7 +129,7 @@ class Sus {
 			$res .= $this->fillAN("", 3);
 			$res .= $this->fillAN($payment["customerno"], 12);
 			$res .= $this->fillAN($payment["customername"], 36);
-			$res .= $this->fillAN($payment["infotext"], 12);
+			$res .= $this->fillAN($payment["infotext"], 10);
 			$res .= $this->fillAN("", 1);
 			$res .= $this->fillN($payment["paymenttype"], 2);
 			$res .= $this->fillN($payment["clearingno"], 5);
