@@ -115,7 +115,7 @@ class Sus {
 		$res .= $this->fillN("", 15);
 		$res .= $this->fillAN("", 32);
 
-		return $res;
+		return $res."\n";
 	}
 
 	private function getPaymentPosts(){
