@@ -149,7 +149,7 @@ class Sus {
 	private function getNotificationAddressPosts(){
 		$res = "";
 		foreach($this->notificationAddresses as $address){
-			$res .= $this->fillN("30", 2);
+			$res .= $this->fillN("36", 2);
 			$res .= $this->fillN($this->contractNumber, 6);
 			$res .= $this->fillAN($address["id"], 44);
 			$res .= $this->fillAN("", 6);
