@@ -156,7 +156,7 @@ class Sus {
 			$res .= $this->fillAN($address["address"], 35);
 			$res .= $this->fillAN("", 35);
 			$res .= $this->fillAN($address["city"], 35);
-			$res .= $this->fillN(str_replace(" ", "",$address["postalcode"], 5));
+			$res .= $this->fillN(str_replace(" ", "",$address["postalcode"]), 5);
 			$res .= $this->fillAN("", 12);
 			$res .="\n";
 		}
