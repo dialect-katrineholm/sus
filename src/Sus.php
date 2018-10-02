@@ -72,7 +72,6 @@ class Sus {
 		$result = "";
 		$result .= $this->getOpeningPost();
 		$result .= $this->getPaymentPosts();
-		$result .= $this->getNotificationAddressPosts();
 		$result .= $this->getClosingPost();
 		return $result;
 	}
@@ -141,25 +140,30 @@ class Sus {
 			$res .= $this->fillAN("", 6);
 			$res .= $this->fillN("", 3);
 			$res .="\n";
+
+			foreach($this->notificationAddresses as $notifyaddress) {
+			    if($notifyaddress['id'] == $payment['id']) {
+			        $res .= $this->getNotificationAddressPost($notifyaddress);
+			        break;
+                }
+            }
 		}
 
 		return $res;
 	}
 
-	private function getNotificationAddressPosts(){
+	private function getNotificationAddressPost($address){
 		$res = "";
-		foreach($this->notificationAddresses as $address){
-			$res .= $this->fillN("36", 2);
-			$res .= $this->fillN($this->contractNumber, 6);
-			$res .= $this->fillAN($address["id"], 44);
-			$res .= $this->fillAN("", 6);
-			$res .= $this->fillAN($address["address"], 35);
-			$res .= $this->fillAN("", 35);
-			$res .= $this->fillAN($address["city"], 35);
-			$res .= $this->fillN(str_replace(" ", "",$address["postalcode"]), 5);
-			$res .= $this->fillAN("", 12);
-			$res .="\n";
-		}
+		$res .= $this->fillN("36", 2);
+		$res .= $this->fillN($this->contractNumber, 6);
+		$res .= $this->fillAN($address["id"], 44);
+		$res .= $this->fillAN("", 6);
+		$res .= $this->fillAN(substr($address["address"], 0, 35), 35);
+		$res .= $this->fillAN("", 35);
+		$res .= $this->fillAN($address["city"], 35);
+		$res .= $this->fillN(str_replace(" ", "",$address["postalcode"]), 5);
+		$res .= $this->fillAN("", 12);
+		$res .="\n";
 
 		return $res;
 	}
