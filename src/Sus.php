@@ -91,7 +91,7 @@ class Sus {
 		$openingPost .= $this->fillN($this->feedbackContractNumber, 5);
 		$openingPost .= $this->fillN($this->organizationNumber, 10);
 		$openingPost .= $this->fillAN("", 99);
-		return $openingPost."\n";
+		return $openingPost."\r\n";
 
 	}
 
@@ -114,7 +114,7 @@ class Sus {
 		$res .= $this->fillN("", 15);
 		$res .= $this->fillAN("", 32);
 
-		return $res."\n";
+		return $res."\r\n";
 	}
 
 	private function getPaymentPosts(){
@@ -139,7 +139,7 @@ class Sus {
 			$res .= $this->fillN("", 15);
 			$res .= $this->fillAN("", 6);
 			$res .= $this->fillN("", 3);
-			$res .="\n";
+			$res .="\r\n";
 
 			foreach($this->notificationAddresses as $notifyaddress) {
 			    if($notifyaddress['id'] == $payment['id']) {
@@ -163,7 +163,7 @@ class Sus {
 		$res .= $this->fillAN($address["city"], 35);
 		$res .= $this->fillN(str_replace(" ", "",$address["postalcode"]), 5);
 		$res .= $this->fillAN("", 12);
-		$res .="\n";
+		$res .="\r\n";
 
 		return $res;
 	}
