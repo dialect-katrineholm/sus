@@ -74,12 +74,33 @@ class SusTest extends TestCase
 
 		$data = $sus->raw();
 		$this->assertContains("44444", $data);
-
-
 	}
 
+    /** @test */
+    public function row_length_is_always_180_characters()
+    {
+        $contract_number = "123456";
+        $feedback_contract_number = "54321";
+        $date = Carbon::now()->format("Ymd");
+        $org_nr = "0123456789";
 
+        $sus = new Sus($contract_number, $org_nr, $feedback_contract_number, $date);
+        $sus = $sus->addPersonNrPayment(12345, 199105262019, "Markus Stromgren", "TESTCOMP", 12200)
+                   ->addNotificationAddress(12345, "Torpvagen 12", "Katrineholm", "64134");
 
+        $data = $sus->raw();
 
+        file_put_contents("test.txt", $data);
+
+        $rows = explode("\r\n", $data);
+
+        foreach($rows as $row) {
+            if(strlen($row) == 0) {
+                continue;
+            }
+
+            $this->assertEquals(180, strlen($row));
+        }
+    }
 
 }
