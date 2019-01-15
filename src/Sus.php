@@ -158,7 +158,7 @@ class Sus {
 		$res .= $this->fillN($this->contractNumber, 6);
 		$res .= $this->fillAN($address["id"], 44);
 		$res .= $this->fillAN("", 6);
-		$res .= $this->fillAN(substr($address["address"], 0, 35), 35);
+		$res .= $this->fillAN(mb_substr($address["address"], 0, 35), 35);
 		$res .= $this->fillAN("", 35);
 		$res .= $this->fillAN($address["city"], 35);
 		$res .= $this->fillN(str_replace(" ", "",$address["postalcode"]), 5);
@@ -171,7 +171,7 @@ class Sus {
 
 
 	private function fillN($str, $length){
-		$len = strlen($str);
+		$len = mb_strlen($str);
 		if($len > $length){
 			throw new InvalidLengthException('Invalid length for: "'.$str.'", Length: '.$len.' Expected: '.$length);
 		}
@@ -180,7 +180,7 @@ class Sus {
 	}
 
 	private function fillAN($str, $length){
-		$len = strlen($str);
+		$len = mb_strlen($str);
 		if($len > $length){
 			throw new InvalidLengthException('Invalid length for: "'.$str.'", Length: '.$len.' Expected: '.$length);
 		}
